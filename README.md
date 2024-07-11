@@ -4,7 +4,7 @@ The developed project management tool that enables user account creation and log
 
 Additionally, the tool features filters for categorizing tasks into "Personal" and "Assigned to Me" categories. The "Personal" category includes tasks created by the user, while the "Assigned to Me" category lists tasks specifically assigned to them by the project manager, facilitating focused task management.
 
-## Available Scripts
+## Technology Used
 
 Frontend - React Js
 backend - Express js
