@@ -15,7 +15,7 @@ Additionally, the tool features filters for categorizing tasks into "Personal" a
 ## Packages Used
 
 - **TypeScript** - Leveraged for type-safe JavaScript development.
-- **@reduxjs/toolkit** - Utilized for efficient state management in complex React components.
+- **reduxjs/toolkit** - Utilized for efficient state management in complex React components.
 - **zod** - Used for robust schema validation in TypeScript.
 - **axios** - Integrated for seamless HTTP requests handling across the application..
 - **recharts** - Integrated to create dynamic and interactive charts within the application.
