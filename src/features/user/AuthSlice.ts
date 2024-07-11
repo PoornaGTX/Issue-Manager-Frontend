@@ -64,16 +64,6 @@ const AuthSlice = createSlice({
   name: 'Auth',
   initialState,
   reducers: {
-    displayAlet: (state) => {
-      state.showAlert = true;
-      state.alertType = 'error';
-      state.alertText = 'Please provide all values';
-    },
-    hideAlert: (state) => {
-      state.showAlert = false;
-      state.alertType = '';
-      state.alertText = '';
-    },
     logOut: (state) => {
       state.user = null;
       state.token = null;
@@ -129,5 +119,5 @@ const AuthSlice = createSlice({
   },
 });
 
-export const { hideAlert, displayAlet, logOut } = AuthSlice.actions;
+export const { logOut } = AuthSlice.actions;
 export default AuthSlice.reducer;

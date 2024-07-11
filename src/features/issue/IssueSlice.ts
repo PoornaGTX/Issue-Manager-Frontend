@@ -12,10 +12,11 @@ const initialState: IssueSliceType = {
   alertType: '',
   showAlert: false,
   errorMsg: 'is currently empty',
-  type: '',
+  type: 'Personal',
   search: '',
   filter: 'all',
-  stats: [],
+  statuses: [],
+  priorities: [],
 };
 
 export const getAllIssues = createAsyncThunk<IssueSliceType>('Issue/getAllIssues', async (searchText, thunkAPI) => {
@@ -136,16 +137,6 @@ const IssueSlice = createSlice({
   name: 'Issue',
   initialState,
   reducers: {
-    displayAlet: (state) => {
-      state.showAlert = true;
-      state.alertType = 'error';
-      state.alertText = 'Please provide all values';
-    },
-    hideAlert: (state) => {
-      state.showAlert = false;
-      state.alertType = '';
-      state.alertText = '';
-    },
     searchType: (state, { payload }) => {
       state.type = payload ? payload.type : '';
     },
@@ -256,7 +247,8 @@ const IssueSlice = createSlice({
         state.isLoading = false;
         state.showAlert = true;
         state.alertType = 'success';
-        state.stats = action.payload.stats;
+        state.statuses = action.payload.statuses;
+        state.priorities = action.payload.priorities;
       })
       .addCase(getStats.rejected, (state, action) => {
         state.isLoading = false;
@@ -268,5 +260,5 @@ const IssueSlice = createSlice({
   },
 });
 
-export const { hideAlert, displayAlet, searchType, searchParam, searchFilter } = IssueSlice.actions;
+export const { searchType, searchParam, searchFilter } = IssueSlice.actions;
 export default IssueSlice.reducer;

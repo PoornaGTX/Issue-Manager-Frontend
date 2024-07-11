@@ -6,6 +6,7 @@ import { APP_NAME, LOG_OUT } from '../utils/consts';
 import Logo from '../assets/logo.png';
 import { useAppSelector, useAppDispatch } from '../hooks/useAppHook';
 import { logOut } from '../features/user/AuthSlice';
+import { TiArrowSortedDown } from 'react-icons/ti';
 
 const NavBar = ({ children }: PropsWithChildren) => {
   const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ const NavBar = ({ children }: PropsWithChildren) => {
   return (
     <div className={`flex h-screen bg-gray-100  `}>
       <div
-        className={`hidden sm:transition-all sm:flex flex-col w-64 bg-slate-300 ${
+        className={`hidden sm:transition-all sm:flex flex-col w-64 bg-gray-200 ${
           open ? 'sm:transform sm:translate-x-0 sm:overflow-y-auto' : 'sm:transform sm:-translate-x-full'
         } sm:ease-in-out sm:duration-300 sm:fixed sm:h-screen`}
       >
@@ -90,10 +91,11 @@ const NavBar = ({ children }: PropsWithChildren) => {
             <div className="flex justify-between items-center gap-4">
               <div className="relative">
                 <button
-                  className="text-xs sm:text-md md:text-xl text-gray-800 ml-5 font-bold  capitalize"
+                  className="flex items-center text-xs sm:text-md md:text-xl text-gray-800 ml-5 font-bold capitalize"
                   onClick={() => setUserDropDownOpen(!userDropDownOpen)}
                 >
-                  {user.name}
+                  <span>{user.name}</span>
+                  <TiArrowSortedDown className="ml-1" />
                 </button>
                 {userDropDownOpen && (
                   <div className="absolute top-9 right-1 w-36 h-auto bg-slate-200 p-4 overflow-hidden rounded-md flex justify-center">

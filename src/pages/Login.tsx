@@ -1,7 +1,5 @@
 import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import Logo from '../assets/logo.png';
-import Select, { SingleValue } from 'react-select';
+import { SingleValue } from 'react-select';
 import { OptionType } from '../utils/types';
 import { useAppSelector, useAppDispatch } from '../hooks/useAppHook';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +10,7 @@ import { register, login } from '../features/user/AuthSlice';
 import PropagateLoader from 'react-spinners/PulseLoader';
 import { override } from '../utils/consts';
 import { options, optionsPositions } from '../utils/consts';
+import { LoginFormRow, FormLogo, PasswordInput, LoginSelect } from '../components/';
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -90,75 +89,55 @@ const Login = () => {
   return (
     <div className="flex justify-center items-center h-screen">
       <form className="flex flex-col border items-center bg-white p-6 rounded-lg  min-w-[350px] sm:min-w-[400px] shadow-2xl" onSubmit={handleSubmit}>
-        <div className="mb-2">
-          <img src={Logo} alt="logo" />
-          <h2 className="text-2xl text-center font-semibold mt-3">{isMember ? 'Login' : 'Register'}</h2>
-        </div>
+        <FormLogo isMember={isMember} />
 
-        <div className={`${isMember ? 'hidden' : 'block'} mb-4 w-full`}>
-          <label htmlFor="name" className="block mb-2">
-            Name
-          </label>
-          <input
-            id="name"
-            name="name"
-            value={credentials.name}
-            onChange={handleChange}
-            className="p-2 rounded-lg w-full bg-gray-50 border border-gray-300"
-            type="text"
-          />
-        </div>
+        <LoginFormRow
+          label="Name"
+          htmlFor="name"
+          type="text"
+          id="email"
+          name="name"
+          isHidden={isMember}
+          value={credentials.name}
+          handleChange={handleChange}
+          className="p-2 rounded-lg w-full bg-gray-50 border border-gray-300"
+        />
 
-        <div className="mb-4 w-full">
-          <label htmlFor="email" className="block mb-2">
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            value={credentials.email}
-            onChange={handleChange}
-            className="p-2 rounded-lg w-full bg-gray-50 border border-gray-300"
-            type="text"
-          />
-        </div>
+        <LoginFormRow
+          label="Email"
+          htmlFor="email"
+          type="text"
+          id="email"
+          name="email"
+          value={credentials.email}
+          handleChange={handleChange}
+          className="p-2 rounded-lg w-full bg-gray-50 border border-gray-300"
+        />
 
-        <div className="mb-4 w-full">
-          <label htmlFor="password" className="block mb-2">
-            Password
-          </label>
-          <div className="flex justify-end items-center relative">
-            <input
-              id="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleChange}
-              className="p-2 rounded-lg w-full bg-gray-50 border border-gray-300"
-              type={showPassword ? 'text' : 'password'}
-            />
-            {showPassword ? (
-              <AiFillEye className="absolute mr-2 w-10 cursor-pointer" onClick={togglePasswordVisibility} />
-            ) : (
-              <AiFillEyeInvisible className="absolute mr-2 w-10 cursor-pointer" onClick={togglePasswordVisibility} />
-            )}
-          </div>
-        </div>
+        <PasswordInput
+          value={credentials.password}
+          handleChange={handleChange}
+          showPassword={showPassword}
+          togglePasswordVisibility={togglePasswordVisibility}
+        />
+
         {!isMember && (
-          <div className="w-full mb-4">
-            <label htmlFor="position" className="block mb-2">
-              Position
-            </label>
-            <Select options={optionsPositions} value={selectedOptions.position} onChange={handleSelectChange('position')} />
-          </div>
+          <LoginSelect
+            label="Position"
+            htmlFor="Position"
+            options={optionsPositions}
+            value={selectedOptions.position}
+            handleSelectChange={handleSelectChange('position')}
+          />
         )}
-
         {!isMember && (
-          <div className="w-full">
-            <label htmlFor="company" className="block mb-2">
-              Company
-            </label>
-            <Select options={options} value={selectedOptions.company} onChange={handleSelectChange('company')} />
-          </div>
+          <LoginSelect
+            label="Company"
+            htmlFor="company"
+            options={options}
+            value={selectedOptions.company}
+            handleSelectChange={handleSelectChange('company')}
+          />
         )}
 
         <button className="bg-primary text-white text-xl font-semibold w-full rounded-md mt-4 p-1">

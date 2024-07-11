@@ -1,6 +1,20 @@
 import { InputRowType } from '../../utils/types';
+import { toast } from 'react-toastify';
 
 const InputRow = ({ type = 'text', labelText, name, value, handleChange, disabled, readonly }: InputRowType) => {
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedDate = new Date(e.target.value);
+    const today = new Date();
+
+    if (selectedDate < today) {
+      e.preventDefault();
+      toast.error('Please select a future date.');
+      return;
+    }
+
+    handleChange(e);
+  };
+
   return (
     <div className={`mb-3 ${type === 'date' && 'w-1/2'}`}>
       <label className="block mb-2">{labelText}</label>
@@ -9,7 +23,7 @@ const InputRow = ({ type = 'text', labelText, name, value, handleChange, disable
         type={type}
         name={name}
         value={value}
-        onChange={handleChange}
+        onChange={type === 'date' ? handleDateChange : handleChange}
         disabled={disabled}
         readOnly={readonly}
       />

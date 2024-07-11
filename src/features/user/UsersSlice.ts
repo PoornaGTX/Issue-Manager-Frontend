@@ -32,18 +32,7 @@ export const getUsers = createAsyncThunk<usersSlice, { company: string }>('Users
 const UsersSlice = createSlice({
   name: 'Users',
   initialState,
-  reducers: {
-    displayAlet: (state) => {
-      state.showAlert = true;
-      state.alertType = 'error';
-      state.alertText = 'Please provide all values';
-    },
-    hideAlert: (state) => {
-      state.showAlert = false;
-      state.alertType = '';
-      state.alertText = '';
-    },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder
@@ -67,5 +56,4 @@ const UsersSlice = createSlice({
   },
 });
 
-export const { hideAlert, displayAlet } = UsersSlice.actions;
 export default UsersSlice.reducer;

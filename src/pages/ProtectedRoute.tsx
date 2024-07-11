@@ -6,7 +6,7 @@ export const ProtectedRoute = ({ children }: PropsWithChildren) => {
   const { user } = useAppSelector((state) => state.Auth);
 
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/landing" />;
   }
 
   return <>{children}</>;

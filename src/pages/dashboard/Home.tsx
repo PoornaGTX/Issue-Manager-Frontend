@@ -6,6 +6,7 @@ import {
   OPEN,
   IN_PROGRESS,
   TESTING,
+  CLOSE,
   VIEW_ISSUE,
   optionsIssueType,
   optionsIssueTypePM,
@@ -23,13 +24,13 @@ import PropagateLoader from 'react-spinners/PulseLoader';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { isLoading, issues } = useAppSelector((state) => state.Issue);
+  const { isLoading, issues, type } = useAppSelector((state) => state.Issue);
   const { user } = useAppSelector((state) => state.Auth);
   const [issueModalOpen, setIssueModalOpen] = useState(false);
   const [modalData, setModalData] = useState<{ type: string; issue: issue | undefined }>({ type: '', issue: undefined });
   const [searchText, setSearchText] = useState('');
 
-  const defaultOption: OptionType = optionsIssueType[1];
+  const defaultOption: OptionType = optionsIssueType[0];
   const [selectedOption, setSelectedOption] = useState<OptionType | null>(defaultOption);
   const [selectedOptionPriority, setSelectedOptionPriority] = useState<OptionType | null>();
 
@@ -61,6 +62,8 @@ const Home = () => {
 
   const resetDropdown = () => {
     dispatch(searchFilter({ searchFilter: 'all' }));
+    dispatch(searchType({ type: 'Personal' }));
+    setSelectedOption(defaultOption);
     setSelectedOptionPriority(null);
   };
 
@@ -70,7 +73,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="mb-4">
+      <div className="mb-4 shadow-lg">
         <input
           className="w-full py-2 px-2 border  rounded-md text-black"
           type="text"
@@ -101,7 +104,7 @@ const Home = () => {
           Reset
         </button>
 
-        <button className="bg-primary p-1 rounded-md text-white font-semibold" onClick={() => modalhandler(CREATE_ISSUE)}>
+        <button className="bg-primary p-1 px-2 rounded-md text-white font-semibold" onClick={() => modalhandler(CREATE_ISSUE)}>
           + Add New Issue
         </button>
       </div>
@@ -114,8 +117,8 @@ const Home = () => {
         <>
           {issues?.length > 0 ? (
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-              <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
+              <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-200 ">
                   <tr>
                     <th scope="col" className="px-6 py-3">
                       Title
@@ -140,7 +143,12 @@ const Home = () => {
                 <tbody>
                   {issues?.map((issue) => {
                     return (
-                      <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" key={issue._id}>
+                      <tr
+                        className={`bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 ${
+                          issue.status === 'Close' ? 'line-through' : ''
+                        }`}
+                        key={issue._id}
+                      >
                         <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                           <div className="ps-3">
                             <div className="text-base font-semibold">{issue.title}</div>
@@ -153,7 +161,7 @@ const Home = () => {
                             <div
                               className={`h-2.5 w-2.5 rounded-full ${issue.status === OPEN && 'bg-green-500'} ${
                                 issue.status === IN_PROGRESS && 'bg-blue-600'
-                              } ${issue.status === TESTING && 'bg-red-600'} me-2`}
+                              } ${issue.status === TESTING && 'bg-red-600'} ${issue.status === CLOSE && 'bg-stone-700'} me-2`}
                             ></div>{' '}
                             {issue.status}
                           </div>

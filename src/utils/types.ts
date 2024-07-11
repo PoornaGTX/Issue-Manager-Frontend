@@ -65,7 +65,8 @@ export interface IssueSliceType {
   alertType: string;
   showAlert: boolean;
   errorMsg: any;
-  stats: any[];
+  statuses: any[];
+  priorities: any[];
 }
 
 export interface UserSlice extends IssueSliceType {
@@ -79,6 +80,14 @@ export interface confirmationModal {
   alertType?: string;
   closeHandler: () => void;
   issueDeleteHandler: () => void;
+}
+
+export interface loginSelect {
+  label: string;
+  options: any;
+  value: any;
+  handleSelectChange: any;
+  htmlFor: string;
 }
 
 export type UsersType = {
@@ -117,6 +126,7 @@ export interface ButtonType {
   title: string;
   submitHandler?: any;
   pram?: string;
+  close?: boolean;
 }
 
 export interface DropDownLargeType {
@@ -147,4 +157,24 @@ export interface InputRowMultiLine {
   value: string;
   handleChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void; // Adjusted type here
   disabled?: boolean;
+}
+
+export interface LoginInputTypes {
+  label: string;
+  id: string;
+  name: string;
+  value: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
+  isHidden?: boolean;
+  type: string;
+  htmlFor: string;
+}
+
+export interface PasswordInputTypes {
+  value: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  togglePasswordVisibility: () => void;
+  isHidden?: boolean;
+  showPassword: boolean;
 }

@@ -1,4 +1,4 @@
-import { OptionType, SelectStyles } from './types';
+import { OptionType } from './types';
 export const APP_NAME = 'Issue Manager';
 export const LOG_OUT = 'LogOut';
 export const CREATE_ISSUE = 'create_issue';
@@ -6,6 +6,7 @@ export const VIEW_ISSUE = 'view_issue';
 export const OPEN = 'Open';
 export const IN_PROGRESS = 'In Progress';
 export const TESTING = 'Testing';
+export const CLOSE = 'Close';
 export const LOW = 'Low';
 export const MEDIUM = 'Medium';
 export const HIGH = 'High';
@@ -16,6 +17,7 @@ export const statusOptionsMapping: Record<string, OptionType> = {
   Open: { value: 'Open', label: '🟢 Open' },
   'In Progress': { value: 'In Progress', label: '🔵 In Progress' },
   Testing: { value: 'Testing', label: '🔴 Testing' },
+  Close: { value: 'Close', label: '🟤 Close' },
 };
 
 export const priorityOptionsMapping: Record<string, OptionType> = {
@@ -28,6 +30,7 @@ export const optionsStatus: OptionType[] = [
   { value: 'Open', label: '🟢 Open' },
   { value: 'In Progress', label: '🔵 In Progress ' },
   { value: 'Testing', label: '🔴 Testing' },
+  { value: 'Close', label: '🟤 Close' },
 ];
 
 export const optionsPriority: OptionType[] = [

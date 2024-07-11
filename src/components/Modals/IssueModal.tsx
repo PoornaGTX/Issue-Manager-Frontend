@@ -11,6 +11,7 @@ import {
   EDIT,
   DELETE,
   selectStyles,
+  CLOSE,
 } from '../../utils/consts';
 import { createIssue, updateIssue, deleteIssue } from '../../features/issue/IssueSlice';
 import { useAppSelector, useAppDispatch } from '../../hooks/useAppHook';
@@ -163,18 +164,24 @@ const IssueModal = ({ modalDetails, closeHandler }: any) => {
     <>
       <ResponseModal open={confirmationModalOpen} closeHandler={ModalCloseHandler} issueDeleteHandler={issueDeleteHandler} />
 
-      <h2 className="text-center text-2xl font-semibold mb-2 rounded-sm bg-green-500 text-white">
-        {type === CREATE_ISSUE ? 'Create A Issue' : `Issue ID - ${issue?._id} `}
+      <h2 className="text-center text-2xl font-semibold mb-2 rounded-sm bg-gray-500 text-white">
+        {type === CREATE_ISSUE ? 'Create a Issue' : `Issue ID - ${issue?._id} `}
       </h2>
 
-      <InputRow name="title" labelText="Title" value={formData.title} handleChange={handleInputChange} disabled={permission} />
+      <InputRow
+        name="title"
+        labelText="Title"
+        value={formData.title}
+        handleChange={handleInputChange}
+        disabled={permission || issue?.status === CLOSE}
+      />
 
       <InputRowMultiLine
         name="description"
         labelText="Description"
         value={formData.description}
         handleChange={handleInputChange}
-        disabled={permission}
+        disabled={permission || issue?.status === CLOSE}
       />
 
       {user.position === 'Project Manager' && (
@@ -194,7 +201,7 @@ const IssueModal = ({ modalDetails, closeHandler }: any) => {
           options={optionsStatus}
           value={selectedOptions.status}
           handleSelectChange={handleSelectChange('status')}
-          isDisabled={permission}
+          isDisabled={permission || issue?.status === CLOSE}
         />
 
         <DropDown
@@ -203,7 +210,7 @@ const IssueModal = ({ modalDetails, closeHandler }: any) => {
           options={optionsPriority}
           value={selectedOptions.priority}
           handleSelectChange={handleSelectChange('priority')}
-          isDisabled={permission}
+          isDisabled={permission || issue?.status === CLOSE}
         />
       </div>
 
@@ -214,15 +221,24 @@ const IssueModal = ({ modalDetails, closeHandler }: any) => {
           labelText="Start Date"
           value={formData.startDate}
           handleChange={handleInputChange}
-          readonly={permission}
+          readonly={permission || issue?.status === CLOSE}
         />
 
-        <InputRow name="dueDate" type="date" labelText="Due Date" value={formData.dueDate} handleChange={handleInputChange} readonly={permission} />
+        <InputRow
+          name="dueDate"
+          type="date"
+          labelText="Due Date"
+          value={formData.dueDate}
+          handleChange={handleInputChange}
+          readonly={permission || issue?.status === CLOSE}
+        />
       </div>
 
       <br />
       {type === VIEW_ISSUE && (
         <div className="flex gap-x-2">
+          <Button title="Delete" submitHandler={submitHandler} isLoading={isLoading} permission={permission} pram={DELETE} />
+
           <Button
             title="Edit"
             submitHandler={submitHandler}
@@ -230,9 +246,8 @@ const IssueModal = ({ modalDetails, closeHandler }: any) => {
             isLoading={isLoading}
             permission={permission}
             pram={EDIT}
+            close={issue?.status === CLOSE}
           />
-
-          <Button title="Delete" submitHandler={submitHandler} isLoading={isLoading} permission={permission} pram={DELETE} />
         </div>
       )}
 
