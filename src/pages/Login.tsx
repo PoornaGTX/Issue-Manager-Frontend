@@ -61,11 +61,11 @@ const Login = () => {
       if (isMember) {
         LoginSchema.parse({ email, password });
         await dispatch(login({ email, password })).unwrap();
-        toast.success('login successful, redirecting...');
+        toast.success('Login successful, Redirecting...');
       } else {
         RegisterSchema.parse({ email, password, name, company, position });
         await dispatch(register({ email, password, name, company, position })).unwrap();
-        toast.success('register successful, redirecting...');
+        toast.success('Registration successful, Redirecting...');
       }
     } catch (error) {
       if (error instanceof z.ZodError) {
