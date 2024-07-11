@@ -21,3 +21,16 @@ Additionally, the tool features filters for categorizing tasks into "Personal" a
 - **recharts** - Integrated to create dynamic and interactive charts within the application.
 - **react-toastify** - Implemented for sleek and customizable toast notifications in the UI.
 
+
+## Installation
+
+Install my-project with npm
+
+```bash
+01. run 'npm install' command
+02. Navigate to the src/utils/consts.js file in your project directory.
+03. Locate the BASE_URL constant in the file.
+04. Update the BASE_URL constant with the URL of your locally running backend API.
+05. run 'npm start' command
+```
+    
