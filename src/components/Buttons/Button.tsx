@@ -1,4 +1,6 @@
 import { ButtonType } from '../../utils/types';
+import PropagateLoader from 'react-spinners/PulseLoader';
+import { override } from '../../utils/consts';
 
 const Button = ({ hasFormChanged = () => true, isLoading, permission, title, submitHandler, pram, close }: ButtonType) => {
   return (
@@ -9,7 +11,11 @@ const Button = ({ hasFormChanged = () => true, isLoading, permission, title, sub
       onClick={(e) => submitHandler(e, pram)}
       disabled={(title === 'Edit' && !hasFormChanged()) || isLoading || permission}
     >
-      {title}
+      {isLoading ? (
+        <PropagateLoader color={'white'} loading={isLoading} cssOverride={override} size={6} aria-label="Loading Spinner" data-testid="loader" />
+      ) : (
+        title
+      )}
     </button>
   );
 };
