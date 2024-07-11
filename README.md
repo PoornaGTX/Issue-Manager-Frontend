@@ -21,6 +21,7 @@ Additionally, the tool features filters for categorizing tasks into "Personal" a
 - **recharts** - Integrated to create dynamic and interactive charts within the application.
 - **react-toastify** - Implemented for sleek and customizable toast notifications in the UI.
 - **react-select** - Utilized for interactive and customizable dropdown selection inputs in various parts of the application.
+- **react-spinners** - Integrated to display visually appealing loading spinners during asynchronous operations or data fetching.
 
 
 ## Installation
