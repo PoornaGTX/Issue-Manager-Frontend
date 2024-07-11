@@ -12,7 +12,7 @@ Additionally, the tool features filters for categorizing tasks into "Personal" a
 **Database** - MongoDB
 
 
-## Packages Used
+## Packages Used in Frontend
 
 - **TypeScript** - Leveraged for type-safe JavaScript development.
 - **reduxjs/toolkit** - Utilized for efficient state management in complex React components.
