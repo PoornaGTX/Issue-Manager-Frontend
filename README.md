@@ -6,9 +6,9 @@ Additionally, the tool features filters for categorizing tasks into "Personal" a
 
 ## Technology Used
 
-Frontend - React Js
-backend - Express js
-DB - MongoDB
+**Frontend** - React Js  
+**Backend** - Express Js  
+**Database** - MongoDB
 
 In the project directory, you can run:
 
