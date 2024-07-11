@@ -73,7 +73,8 @@ export const selectStyles = {
   },
 };
 
-export const BASE_URL = 'http://localhost:5000/api/v1';
+// export const BASE_URL = 'http://localhost:5000/api/v1';
+export const BASE_URL = 'https://issue-manager-backend.vercel.app/api/v1';
 
 export const override = {
   display: 'block',

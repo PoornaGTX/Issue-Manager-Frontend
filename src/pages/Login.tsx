@@ -12,16 +12,14 @@ import { register, login } from '../features/user/AuthSlice';
 import PropagateLoader from 'react-spinners/PulseLoader';
 import { override } from '../utils/consts';
 import { options, optionsPositions } from '../utils/consts';
-import { AxiosError } from 'axios';
 
 const Login = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { isLoading, user, showAlert, alertText, alertType } = useAppSelector((state) => state.Auth);
+  const { isLoading, user } = useAppSelector((state) => state.Auth);
   const [showPassword, setShowPassword] = useState(false);
   const [isMember, setIsMember] = useState(false);
-  // const [selectedOption, setSelectedOption] = useState<OptionType | null>(null);
   const [credentials, setCredentials] = useState({ name: '', email: '', company: '', position: '', password: '' });
 
   const [selectedOptions, setSelectedOptions] = useState<{ company: OptionType | null; position: OptionType | null }>({
@@ -49,15 +47,6 @@ const Login = () => {
     setIsMember(!isMember);
   };
 
-  // const handleSelectChange = (selectedOption: SingleValue<OptionType>) => {
-  //   setSelectedOption(selectedOption);
-  //   const companyValue = selectedOption?.value ?? '';
-  //   setCredentials((prevState) => ({
-  //     ...prevState,
-  //     company: companyValue,
-  //   }));
-  // };
-
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials((prevState) => ({
@@ -65,10 +54,6 @@ const Login = () => {
       [name]: value,
     }));
   };
-
-  interface ErrorResponse {
-    error: string;
-  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,10 +73,6 @@ const Login = () => {
         const firstError = error.errors[0];
         toast.error(firstError.message);
       } else {
-        // console.log('error axios');
-        // const axiosError = error as AxiosError<ErrorResponse>;
-        // const errorMessage = axiosError.response?.data.error ?? 'An error occurred';
-        // toast.error(alertText);
         const errorMessage = error as string;
         toast.error(errorMessage);
       }

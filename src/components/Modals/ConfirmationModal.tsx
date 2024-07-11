@@ -1,7 +1,7 @@
 import warning_icon from '../../assets/icons/warning_icon.png';
 import { confirmationModal } from '../../utils/types';
 
-const ResponseModal = ({ open, alertText, alertType, closeHandler, issueDeleteHandler }: confirmationModal) => {
+const ResponseModal = ({ open, alertText, closeHandler, issueDeleteHandler }: confirmationModal) => {
   if (!open) {
     return null;
   }
@@ -10,7 +10,7 @@ const ResponseModal = ({ open, alertText, alertType, closeHandler, issueDeleteHa
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center text-slate-950 z-10">
       <div className="w-[350px] flex flex-col">
         <div className="bg-white p-2 rounded-lg flex flex-col justify-center items-center">
-          <img src={warning_icon} className="w-20 h-20 mb-2" />
+          <img src={warning_icon} alt={'icon'} className="w-20 h-20 mb-2" />
           <h2 className="text-lg font-semibold capitalize mb-1">Do you want to delete this issue?</h2>
           <h2 className="text-xl text-center font-semibold capitalize">{alertText}</h2>
 

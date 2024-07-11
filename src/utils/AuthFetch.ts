@@ -27,10 +27,8 @@ axiosInstance.interceptors.response.use(
   (error) => {
     const store = getStore();
     if (store) {
-      const { Auth } = store.getState();
       if (error.response.status === 401) {
         store.dispatch(logOut());
-        // Perform logout or any other action based on your requirement
       }
     }
     return Promise.reject(error);
