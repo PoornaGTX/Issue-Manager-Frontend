@@ -1,8 +1,14 @@
-# Getting Started with Create React App
+# Project overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The developed project management tool that enables user account creation and login for efficient project management. Upon registration, users can select their company from pre-defined options, ensuring seamless collaboration within their organizational context. The tool supports multiple user roles, including project managers, testers, and developers. Project managers are granted advanced permissions to assign tasks to team members and manage their activities, fostering streamlined collaboration and enhancing project efficiency. They also have the authority to delete or edit tasks assigned to others within the company. Additionally, I integrated a feature to monitor task statuses using graphical charts, providing project managers with clear visual insights into project progress and team performance, thereby facilitating informed decision-making and successful project outcomes.
+
+Additionally, the tool features filters for categorizing tasks into "Personal" and "Assigned to Me" categories. The "Personal" category includes tasks created by the user, while the "Assigned to Me" category lists tasks specifically assigned to them by the project manager, facilitating focused task management.
 
 ## Available Scripts
+
+Frontend - React Js
+backend - Express js
+DB - MongoDB
 
 In the project directory, you can run:
 
