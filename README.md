@@ -13,12 +13,12 @@ Additionally, the tool features filters for categorizing tasks into "Personal" a
 
 ## Packages Used
 
-**TypeScript** - Leveraged for type-safe JavaScript development.
-**@reduxjs/toolkit** - Utilized for efficient state management in complex React components.
-**zod** - Used for robust schema validation in TypeScript.
-**axios** - Integrated for seamless HTTP requests handling across the application..
-**recharts** - Integrated to create dynamic and interactive charts within the application.
-**react-toastify** - Implemented for sleek and customizable toast notifications in the UI.
+-**TypeScript** - Leveraged for type-safe JavaScript development.
+-**@reduxjs/toolkit** - Utilized for efficient state management in complex React components.
+-**zod** - Used for robust schema validation in TypeScript.
+-**axios** - Integrated for seamless HTTP requests handling across the application..
+-**recharts** - Integrated to create dynamic and interactive charts within the application.
+-**react-toastify** - Implemented for sleek and customizable toast notifications in the UI.
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
